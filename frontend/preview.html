@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>4sov AI Tools Hub — Preview</title>
+<meta name="color-scheme" content="dark">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap">
+<style>
+:root{--bg:#0F172A;--card:rgba(30,41,59,.7);--ind:#6366F1;--vio:#8B5CF6;--tx:#F8FAFC;--tx2:#94A3B8;--line:rgba(148,163,184,.18);--ok:#34d399;--warn:#fbbf24;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;
+background-image:radial-gradient(700px 400px at 15% -5%,rgba(99,102,241,.28),transparent),radial-gradient(600px 380px at 95% 10%,rgba(139,92,246,.2),transparent);background-repeat:no-repeat}
+a{color:inherit;text-decoration:none}
+.shell{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+aside{position:sticky;top:0;height:100vh;padding:24px 14px;display:flex;flex-direction:column;gap:22px;border-right:1px solid var(--line);background:rgba(15,23,42,.6);backdrop-filter:blur(12px)}
+.logo{font-weight:800;font-size:19px;letter-spacing:-.02em}
+.logo span{background:linear-gradient(90deg,var(--ind),var(--vio));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{display:flex;flex-direction:column;gap:4px;flex:1}
+nav a{display:flex;gap:10px;align-items:center;padding:9px 12px;border-radius:10px;color:var(--tx2);font-size:14px;font-weight:500}
+nav a:hover,nav a.on{color:var(--tx);background:rgba(99,102,241,.16)}
+.eng{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--tx2);border:1px solid var(--line);border-radius:99px;padding:5px 12px;background:var(--card);cursor:pointer}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--tx2)}
+.eng.wake .dot{background:var(--warn);animation:p 1s infinite}.eng.awake .dot{background:var(--ok)}
+@keyframes p{50%{opacity:.25}}
+@media(prefers-reduced-motion:reduce){.eng.wake .dot{animation:none}}
+main{width:100%;max-width:1000px;margin:0 auto;padding:48px 32px 72px}
+h1{font-size:clamp(30px,5.5vw,52px);line-height:1.1;letter-spacing:-.03em;margin:0 0 14px;font-weight:800}
+.sub{color:var(--tx2);font-size:18px;max-width:600px;margin:0 0 36px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.glass{background:var(--card);border:1px solid var(--line);border-radius:16px;backdrop-filter:blur(10px)}
+.tc{padding:22px;display:block;transition:border-color .2s,box-shadow .2s}
+.tc:hover,.tc:focus-visible{border-color:var(--ind);box-shadow:0 0 0 1px var(--ind),0 8px 30px rgba(99,102,241,.22);outline:none}
+.ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:linear-gradient(135deg,var(--ind),var(--vio));margin-bottom:14px}
+.tc h3{margin:0 0 4px;font-size:17px}.tc p{margin:0;color:var(--tx2);font-size:14px}
+h2{font-size:26px;letter-spacing:-.02em;margin:56px 0 16px}
+details{padding:16px 20px;margin-bottom:10px}summary{cursor:pointer;font-weight:700}details p{color:var(--tx2);margin:10px 0 0}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}.split .panel{margin-top:0}
+.dz{display:flex;flex-direction:column;justify-content:center;min-height:250px;border:2px dashed rgba(139,92,246,.5);border-radius:16px;padding:36px 20px;text-align:center;cursor:pointer;color:var(--tx2);transition:background .2s,border-color .2s}
+.dz.over,.dz:hover,.dz:focus-within{background:rgba(99,102,241,.1);border-color:var(--vio)}
+.dz b{color:var(--tx);display:block;font-size:17px}
+.dz input{position:absolute;opacity:0;width:1px;height:1px}
+.panel{padding:22px;margin-top:16px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:16px}
+label{font-size:13px;color:var(--tx2);display:block;margin-bottom:4px}
+input[type=number],input[type=text],select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:rgba(15,23,42,.7);color:var(--tx);font:inherit}
+input[type=range]{width:100%;accent-color:var(--vio)}
+:focus-visible{outline:2px solid var(--vio);outline-offset:2px}
+.btn{width:100%;padding:13px;border:0;border-radius:12px;font:inherit;font-weight:700;color:#fff;cursor:pointer;background:linear-gradient(90deg,var(--ind),var(--vio));box-shadow:0 6px 24px rgba(99,102,241,.35)}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn.sec{background:rgba(99,102,241,.16);box-shadow:none;margin-top:10px;display:block;text-align:center}
+.bar{height:8px;border-radius:9px;background:rgba(148,163,184,.2);overflow:hidden;margin-top:14px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ind),var(--vio));transition:width .3s}
+.res{margin-top:16px}.res img{max-width:100%;border-radius:12px;display:block;margin-bottom:12px;background:repeating-conic-gradient(#1e293b 0 25%,#0f172a 0 50%) 0 0/16px 16px}
+.stat{font-size:20px;font-weight:800}.note{font-size:13px;color:var(--tx2);margin-top:10px}
+.back{color:var(--tx2);font-size:14px;display:inline-block;margin-bottom:20px}
+.hint{margin-top:28px;font-size:13px;color:var(--tx2);text-align:center}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.bento .tc:nth-child(1){grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;min-height:280px;background-image:linear-gradient(160deg,rgba(99,102,241,.3),transparent 60%)}
+.bento .tc:nth-child(1) h3{font-size:24px}.bento .tc:nth-child(1) .ic{width:56px;height:56px;font-size:28px;margin-top:auto}
+.bento .tc:nth-child(2){grid-column:span 2}.bento .tc:nth-child(5){grid-column:span 4}
+@media(max-width:820px){.shell{grid-template-columns:1fr}
+aside{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:10px 16px;gap:8px;border-right:0;border-bottom:1px solid var(--line)}
+nav{flex-direction:row;overflow-x:auto;flex-basis:100%;order:3;flex:none}nav a{white-space:nowrap}
+main{padding:28px 18px 56px}.split{grid-template-columns:1fr}
+.bento{grid-template-columns:1fr}.bento .tc{grid-column:auto!important;grid-row:auto!important;min-height:0!important}}
+.pv{margin-top:14px;padding:14px}.pv img,.pv canvas,.res canvas{max-width:100%;border-radius:10px;display:block}
+.paper{background:#fff;color:#111;border-radius:8px;padding:20px;max-height:280px;overflow:auto;font-size:12px;line-height:1.5}.paper *{max-width:100%}
+.pvh{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:13px;color:var(--tx2);margin-bottom:10px;word-break:break-all}
+.badge{font-size:11px;padding:2px 8px;border-radius:99px;background:rgba(99,102,241,.25);color:#c7d2fe;white-space:nowrap}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ba p{margin:0 0 6px}.chk{background:repeating-conic-gradient(#1e293b 0 25%,#0f172a 0 50%) 0 0/16px 16px;border-radius:10px;overflow:hidden}.chk img{margin:0!important}
+.thumb{aspect-ratio:16/9;border-radius:10px;background:linear-gradient(135deg,#312e81,#6d28d9);display:grid;place-items:center;font-size:44px}
+.dz.has{min-height:0;padding:16px}
+</style>
+</head>
+<body>
+<div class="shell"><aside>
+  <a class="logo" href="#/"><span>4sov</span> tools</a>
+  <nav id="nav"></nav>
+  <div class="eng" id="eng" role="button" tabindex="0" title="Demo control: click to put the engine back to sleep"><i class="dot"></i><span id="engt"></span></div>
+</aside>
+<main id="app"></main></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+const YT=/^https?:\/\/(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([\w-]{6,})/;
+const TOOLS={
+ image:{i:'🖼️',n:'Image Resizer',d:'Compress and resize JPG, PNG and WebP images.',h:'Free Online Image Resizer & Compressor',a:'image/png,image/jpeg,image/webp',go:'Compress image',drop:'Drop an image here or click to select'},
+ 'background-remover':{i:'✂️',n:'Background Remover',d:'Remove image backgrounds with AI in one click.',h:'Free Online Background Remover',a:'image/*',go:'Remove background',drop:'Drop an image here or click to select'},
+ 'word-to-pdf':{i:'📄',n:'Word to PDF',d:'Convert .docx documents to PDF.',h:'Free Online Word to PDF Converter',a:'.docx',go:'Convert to PDF',drop:'Drop a .docx file here or browse'},
+ 'pdf-to-word':{i:'📝',n:'PDF to Word',d:'Turn PDF files into editable .docx.',h:'Free Online PDF to Word Converter',a:'.pdf',go:'Convert to Word',drop:'Drop a PDF here or browse'},
+ 'youtube-downloader':{i:'▶️',n:'YouTube Downloader',d:'Save video as MP4 or audio as MP3.',h:'Free YouTube Video & Audio Downloader',go:'Download',yt:1}
+};
+const $=s=>document.querySelector(s),app=$('#app');
+$('#nav').innerHTML='<a href="#/">🏠 Home</a>'+Object.entries(TOOLS).map(([k,t])=>`<a href="#/${k}" data-k="${k}">${t.i} ${t.n}</a>`).join('');
+
+/* ---- Intent-based pre-warm (simulated: 6s here, 30–50s on Render free tier) ---- */
+let eng='sleep';const E={sleep:'Engine asleep',wake:'Waking engine…',awake:'Engine ready'};
+function setEng(s){eng=s;$('#eng').className='eng '+s;$('#engt').textContent=E[s]}
+function wake(){if(eng!=='sleep')return;setEng('wake');setTimeout(()=>setEng('awake'),6000)}
+const waitAwake=()=>new Promise(r=>{const t=setInterval(()=>{if(eng==='awake'){clearInterval(t);r()}},200)});
+$('#eng').onclick=()=>setEng('sleep');setEng('sleep');
+
+const fmt=b=>b>1048576?(b/1048576).toFixed(2)+' MB':Math.round(b/1024)+' KB';
+
+function home(){
+ app.innerHTML=`<h1>Free online tools that<br>just work</h1><p class="sub">Resize images, remove backgrounds, convert documents and save videos. No sign-up, no watermarks.</p>
+ <div class="bento">${Object.entries(TOOLS).map(([k,t])=>`<a class="tc glass" href="#/${k}"><div class="ic">${t.i}</div><h3>${t.n}</h3><p>${t.d}</p></a>`).join('')}</div>
+ <h2>How it works</h2><div class="grid">
+ <div class="glass tc"><h3>Add your file</h3><p>Drop it in, or paste a link for the YouTube tool.</p></div>
+ <div class="glass tc"><h3>Pick your settings</h3><p>Choose quality, size or format while our engine wakes up.</p></div>
+ <div class="glass tc"><h3>Download the result</h3><p>Files are deleted from our servers within 15 minutes.</p></div></div>
+ <h2>Questions</h2>
+ <details class="glass"><summary>Are these tools really free?</summary><p>Yes. There are no accounts and no usage fees.</p></details>
+ <details class="glass"><summary>Why does the first conversion take longer?</summary><p>Our processing engine sleeps when idle. It starts waking as soon as you pick a file, so most people never notice.</p></details>
+ <details class="glass"><summary>Are my files kept?</summary><p>No. Uploads are removed automatically after 15 minutes.</p></details>
+ <p class="hint">Preview only: the image tools run in your browser; document and video tools simulate the backend.</p>`;
+}
+
+function tool(k){
+ const t=TOOLS[k];let file=null,vid=null;
+ app.innerHTML=`<div class="tool"><a class="back" href="#/">← All tools</a><h1>${t.h}</h1><p class="sub">${t.d}</p>
+ <div class="split">${t.yt?`<div><div class="glass panel" style="margin:0"><label for="u">YouTube link</label><input type="text" id="u" placeholder="https://www.youtube.com/watch?v=…"><p class="note" id="uerr"></p><button class="btn" id="fetch">Fetch media</button></div><div id="prev"></div></div>`
+ :`<div><label class="dz" id="dz" tabindex="-1"><input type="file" id="f" accept="${t.a}"><b>${t.drop}</b>${k==='image'?'JPG, PNG or WebP, up to 20 MB':''}<span id="fn"></span></label><div id="prev"></div></div>`}
+ <div class="glass panel">
+ ${k==='image'?`<div class="row"><div><label>Quality: <span id="qv">80</span>%</label><input type="range" id="q" min="10" max="100" value="80"></div>
+ <div><label>Width (px)</label><input type="number" id="w" placeholder="auto"></div><div><label>Height (px)</label><input type="number" id="h" placeholder="auto"></div>
+ <div><label>Format</label><select id="fm"><option value="image/webp">WebP</option><option value="image/jpeg">JPEG</option><option value="image/png">PNG</option></select></div></div>`:''}
+ ${t.yt?`<div class="row"><div><label>Format</label><select id="yf"><option>MP4 · 1080p</option><option>MP4 · 720p</option><option>MP3 · 320 kbps</option></select></div></div>`:''}
+ <button class="btn" id="go">${t.go}</button><div class="bar" id="bar" hidden><i></i></div><div class="res" id="res"></div></div></div></div>`;
+ const go=$('#go'),bar=$('#bar'),res=$('#res');
+ if(t.yt){$('#u').onfocus=wake;$('#fetch').onclick=async()=>{
+   const m=$('#u').value.trim().match(YT);if(!m){$('#uerr').textContent='Enter a valid YouTube link, like https://www.youtube.com/watch?v=…';return}$('#uerr').textContent='';
+   const fb=$('#fetch');fb.disabled=true;if(eng!=='awake'){wake();fb.textContent='Initializing processing engine… (~15s on first use)';await waitAwake()}
+   fb.textContent='Fetch media';fb.disabled=false;vid=m[1];
+   $('#prev').innerHTML=`<div class="glass pv"><div class="pvh"><span>Video found</span><span class="badge">Demo data</span></div><div class="thumb">▶</div><p style="margin:10px 0 0;font-weight:700">Video title appears here</p><p class="note" style="margin:0">ID ${vid} · 3:42 · MP4 1080p/720p, MP3 320 kbps</p></div>`}}else{
+  const dz=$('#dz'),f=$('#f');
+  f.onclick=wake;dz.ondragenter=()=>{wake();dz.classList.add('over')};dz.ondragleave=()=>dz.classList.remove('over');
+  dz.ondragover=e=>e.preventDefault();dz.ondrop=e=>{e.preventDefault();dz.classList.remove('over');wake();f.files=e.dataTransfer.files;pick()};
+  f.onchange=()=>{wake();pick()};
+  function pick(){file=f.files[0];$('#fn').innerHTML=file?`<br>${file.name} · ${fmt(file.size)}`:'';res.innerHTML='';if(file){dz.classList.add('has');prevFile(file,$('#prev'))}}
+ }
+ if(k==='image')$('#q').oninput=e=>$('#qv').textContent=e.target.value;
+ go.onclick=async()=>{
+  res.innerHTML='';
+  if(t.yt){if(!vid){$('#uerr').textContent='Fetch the media first.';return}}
+  else if(!file){res.innerHTML='<p class="note">Choose a file first.</p>';return}
+  go.disabled=true;
+  if(eng!=='awake'){wake();go.textContent='Initializing processing engine… (~15s on first use)';await waitAwake()}
+  go.textContent='Processing…';
+  if(k==='image')await compress(file,res);
+  else if(k==='background-remover')await removeBg(file,res);
+  else{bar.hidden=false;for(let p=10;p<=100;p+=15){bar.firstChild.style.width=p+'%';await new Promise(r=>setTimeout(r,300))}
+   await(t.yt?ytOut(res,vid):outPrev(k,file,res))}
+  bar.hidden=true;go.disabled=false;go.textContent=t.go;
+ };
+}
+
+async function compress(file,res){
+ const img=new Image();img.src=URL.createObjectURL(file);await img.decode();
+ let w=+$('#w').value||0,h=+$('#h').value||0;
+ if(w&&!h)h=Math.round(img.height*w/img.width);else if(h&&!w)w=Math.round(img.width*h/img.height);else if(!w){w=img.width;h=img.height}
+ const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);
+ const type=$('#fm').value,blob=await new Promise(r=>c.toBlob(r,type,$('#q').value/100));
+ const saved=Math.round((1-blob.size/file.size)*100),url=URL.createObjectURL(blob),ext={'image/webp':'webp','image/jpeg':'jpg','image/png':'png'}[type];
+ res.innerHTML=`<div class="ba"><div><p class="note">Before</p><div class="chk"><img src="${URL.createObjectURL(file)}" alt="Original image"></div></div><div><p class="note">After</p><div class="chk"><img src="${url}" alt="Compressed image"></div></div></div><p class="stat">${saved>0?`Saved ${saved}% — new size ${fmt(blob.size)}`:`New size ${fmt(blob.size)} (larger than the original)`}</p><p class="note">Before: ${fmt(file.size)} · ${img.width}×${img.height}px → ${w}×${h}px</p>${saved<=0?'<p class="note">Try a lower quality or a smaller width.</p>':''}<a class="btn sec" href="${url}" download="compressed.${ext}">Download image</a>`;
+}
+
+async function pdfPage(f){const d=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise,pg=await d.getPage(1),vp=pg.getViewport({scale:1.2}),c=document.createElement('canvas');c.width=vp.width;c.height=vp.height;await pg.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;c.style.background='#fff';return c}
+const docHtml=async f=>'<div class="paper">'+(await mammoth.convertToHtml({arrayBuffer:await f.arrayBuffer()})).value+'</div>';
+async function prevFile(f,box){
+ const ext=f.name.split('.').pop().toLowerCase();
+ box.innerHTML=`<div class="glass pv"><div class="pvh"><span>${f.name} · ${fmt(f.size)}</span><span class="badge">Uploaded</span></div><div id="pvb">Loading preview…</div></div>`;
+ const b=box.querySelector('#pvb');
+ try{
+  if(f.type.startsWith('image/'))b.innerHTML=`<div class="chk"><img src="${URL.createObjectURL(f)}" alt="Uploaded file preview"></div>`;
+  else if(ext==='docx')b.innerHTML=await docHtml(f);
+  else if(ext==='pdf'){b.innerHTML='';b.appendChild(await pdfPage(f))}
+ }catch(e){b.textContent='Preview isn’t available for this file, but it can still be converted.'}
+}
+async function outPrev(k,f,res){
+ const w2p=k==='word-to-pdf',name=f.name.replace(/\.[^.]+$/,'')+(w2p?'.pdf':'.docx');
+ res.innerHTML=`<div class="pvh"><span>${name}</span><span class="badge">Converted (demo)</span></div><div id="ob"></div><p class="note">Demo preview. With the backend connected, a Download button appears here for the real file.</p>`;
+ const ob=res.querySelector('#ob');
+ try{if(w2p)ob.innerHTML=await docHtml(f);else ob.appendChild(await pdfPage(f))}catch(e){ob.textContent='Output preview isn’t available.'}
+}
+function ytOut(res,id){
+ const f=$('#yf').value,au=f.startsWith('MP3');
+ res.innerHTML=`<div class="pvh"><span>video-${id}.${au?'mp3':'mp4'}</span><span class="badge">Ready (demo)</span></div>${au?'<div class="thumb" style="aspect-ratio:auto;padding:24px;font-size:30px">🎵 ▂▅▇▅▃▆▂▄</div>':'<div class="thumb">▶</div>'}<p class="note">${f}. With the backend connected, a Download button appears here.</p>`;
+}
+async function removeBg(file,res){
+ const img=new Image();img.src=URL.createObjectURL(file);await img.decode();
+ const sc=Math.min(1,900/Math.max(img.width,img.height)),w=Math.round(img.width*sc),h=Math.round(img.height*sc);
+ const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');x.drawImage(img,0,0,w,h);
+ const d=x.getImageData(0,0,w,h),a=d.data,r0=a[0],g0=a[1],b0=a[2],seen=new Uint8Array(w*h),st=[];
+ const near=p=>{const i=p*4;return Math.abs(a[i]-r0)+Math.abs(a[i+1]-g0)+Math.abs(a[i+2]-b0)<90};
+ for(let i=0;i<w;i++)st.push(i,(h-1)*w+i);for(let j=0;j<h;j++)st.push(j*w,j*w+w-1);
+ while(st.length){const p=st.pop();if(seen[p]||!near(p))continue;seen[p]=1;a[p*4+3]=0;const cx=p%w;if(cx>0)st.push(p-1);if(cx<w-1)st.push(p+1);if(p>=w)st.push(p-w);if(p<w*(h-1))st.push(p+w)}
+ x.putImageData(d,0,0);
+ const url=URL.createObjectURL(await new Promise(r=>c.toBlob(r,'image/png')));
+ res.innerHTML=`<div class="ba"><div><p class="note">Before</p><div class="chk"><img src="${URL.createObjectURL(file)}" alt="Original image"></div></div><div><p class="note">After</p><div class="chk"><img src="${url}" alt="Background removed"></div></div></div><p class="note" style="margin-bottom:0">Rough demo only: it removes pixels close to the corner color, so shaded backgrounds like this leave gaps. The live tool uses an AI model (rembg) for accurate cutouts.</p><a class="btn sec" href="${url}" download="no-background.png">Download PNG</a>`;
+}
+function route(){
+ const k=(location.hash.replace('#/','')||'');
+ document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',(a.dataset.k||'')===k));
+ window.scrollTo(0,0);TOOLS[k]?tool(k):home();
+}
+addEventListener('hashchange',route);route();
+</script>
+</body>
+</html>
