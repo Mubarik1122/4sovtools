@@ -3,7 +3,8 @@
 Free online tools at tools.4sov.com: image resizer, background remover, Word ⇄ PDF, YouTube downloader.
 
 - `backend/`: Node.js/Express API for Render (Docker). See `.env.example`.
-- `frontend/preview.html`: clickable design preview (open in a browser). The WordPress plugin (`4sov-ai-tools`) comes next.
+- `wordpress-plugin/4sov-ai-tools/`: the WordPress plugin. Zip that folder and upload it in WordPress. Setup steps are in its README.
+- `frontend/preview.html`: clickable design preview (open in a browser).
 
 ## Backend status
 | Endpoint | Status |

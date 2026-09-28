@@ -1,0 +1,72 @@
+/* 4sov AI Tools: dark glassmorphism UI. Everything is scoped under .fsov-* or body.fsov-page. */
+body.fsov-page{
+	--fsov-bg:#0F172A;--fsov-card:rgba(30,41,59,.7);--fsov-ind:#6366F1;--fsov-vio:#8B5CF6;
+	--fsov-tx:#F8FAFC;--fsov-tx2:#94A3B8;--fsov-line:rgba(148,163,184,.18);--fsov-err:#fca5a5;
+	background:var(--fsov-bg) radial-gradient(700px 400px at 15% -5%,rgba(99,102,241,.28),transparent) no-repeat;
+	color:var(--fsov-tx);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+.fsov-page .fsov-wrap{max-width:1000px;margin:0 auto;padding:40px 20px 72px;box-sizing:border-box}
+.fsov-page .fsov-wrap *,.fsov-page .fsov-wrap *::before,.fsov-page .fsov-wrap *::after{box-sizing:border-box}
+.fsov-page .fsov-wrap h1{font-size:clamp(28px,5vw,48px);line-height:1.12;letter-spacing:-.03em;margin:0 0 12px;font-weight:800;color:var(--fsov-tx)}
+.fsov-page .fsov-wrap h2,.fsov-page .fsov-wrap h3{color:var(--fsov-tx)}
+.fsov-page .fsov-sub{color:var(--fsov-tx2);font-size:18px;max-width:620px;margin:0 0 32px}
+.fsov-h2{font-size:26px;letter-spacing:-.02em;margin:56px 0 16px}
+.fsov-glass{background:var(--fsov-card);border:1px solid var(--fsov-line);border-radius:16px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+
+/* Home */
+.fsov-bento{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.fsov-card{display:block;padding:22px;text-decoration:none;color:inherit;transition:border-color .2s,box-shadow .2s}
+a.fsov-card:hover,a.fsov-card:focus-visible{border-color:var(--fsov-ind);box-shadow:0 0 0 1px var(--fsov-ind),0 8px 30px rgba(99,102,241,.22);outline:none}
+.fsov-card h2,.fsov-card h3{margin:0 0 4px;font-size:17px}.fsov-card p{margin:0;color:var(--fsov-tx2);font-size:14px}
+.fsov-ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:linear-gradient(135deg,var(--fsov-ind),var(--fsov-vio));margin-bottom:14px}
+.fsov-bento .fsov-card:nth-child(1){grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;min-height:280px;background-image:linear-gradient(160deg,rgba(99,102,241,.3),transparent 60%)}
+.fsov-bento .fsov-card:nth-child(1) h2{font-size:24px}
+.fsov-bento .fsov-card:nth-child(1) .fsov-ic{width:56px;height:56px;font-size:28px;margin-top:auto}
+.fsov-bento .fsov-card:nth-child(2){grid-column:span 2}.fsov-bento .fsov-card:nth-child(5){grid-column:span 4}
+.fsov-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.fsov-faq{padding:16px 20px;margin-bottom:10px}.fsov-faq summary{cursor:pointer;font-weight:700}.fsov-faq p{color:var(--fsov-tx2);margin:10px 0 0}
+
+/* Tool pages */
+.fsov-split{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.fsov-panel{padding:22px}.fsov-flush{margin:0}
+.fsov-dz{display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:250px;border:2px dashed rgba(139,92,246,.5);border-radius:16px;padding:36px 20px;text-align:center;cursor:pointer;color:var(--fsov-tx2);transition:background .2s,border-color .2s;position:relative}
+.fsov-dz strong{color:var(--fsov-tx);font-size:17px}
+.fsov-dz input{position:absolute;opacity:0;width:1px;height:1px}
+.fsov-dz:hover,.fsov-dz:focus-within,.fsov-dz.fsov-over{background:rgba(99,102,241,.1);border-color:var(--fsov-vio)}
+.fsov-dz.fsov-has{min-height:0;padding:16px}
+.fsov-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:16px}
+.fsov-page .fsov-wrap label{font-size:13px;color:var(--fsov-tx2);display:block;margin-bottom:4px}
+.fsov-page .fsov-wrap .fsov-dz{font-size:inherit;margin:0}
+.fsov-page .fsov-wrap input[type=text],.fsov-page .fsov-wrap input[type=number],.fsov-page .fsov-wrap select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--fsov-line);background:rgba(15,23,42,.7);color:var(--fsov-tx);font:inherit;height:auto}
+.fsov-page .fsov-wrap input[type=range]{width:100%;accent-color:var(--fsov-vio)}
+.fsov-page .fsov-wrap :focus-visible{outline:2px solid var(--fsov-vio);outline-offset:2px}
+.fsov-page .fsov-btn{display:block;width:100%;padding:13px;border:0;border-radius:12px;font:inherit;font-weight:700;color:#fff;text-align:center;text-decoration:none;cursor:pointer;background:linear-gradient(90deg,var(--fsov-ind),var(--fsov-vio));box-shadow:0 6px 24px rgba(99,102,241,.35)}
+.fsov-page .fsov-btn:disabled{opacity:.65;cursor:wait}
+.fsov-page .fsov-btn.fsov-sec{background:rgba(99,102,241,.16);box-shadow:none;margin-top:12px}
+.fsov-page .fsov-flush .fsov-btn{margin-top:10px}
+.fsov-bar{height:8px;border-radius:9px;background:rgba(148,163,184,.2);overflow:hidden;margin-top:14px}
+.fsov-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--fsov-ind),var(--fsov-vio));transition:width .3s}
+.fsov-note{font-size:13px;color:var(--fsov-tx2);margin:10px 0 0}
+.fsov-error{font-size:14px;color:var(--fsov-err);margin:10px 0 0}
+.fsov-stat{font-size:20px;font-weight:800;margin:14px 0 0}
+.fsov-title{font-weight:700;margin:10px 0 0}
+
+/* Previews */
+.fsov-pv{margin-top:14px;padding:14px}
+.fsov-pvh{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:13px;color:var(--fsov-tx2);margin-bottom:10px;word-break:break-all}
+.fsov-badge{font-size:11px;padding:2px 8px;border-radius:99px;background:rgba(99,102,241,.25);color:#c7d2fe;white-space:nowrap}
+.fsov-pv img,.fsov-page-canvas,.fsov-ba img,.fsov-thumb,.fsov-media{max-width:100%;border-radius:10px;display:block}
+.fsov-media{width:100%}.fsov-thumb{width:100%;height:auto}
+.fsov-page-canvas{background:#fff}
+.fsov-ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.fsov-ba p{margin:0 0 6px}
+.fsov-chk{background:repeating-conic-gradient(#1e293b 0 25%,#0f172a 0 50%) 0 0/16px 16px;border-radius:10px;overflow:hidden}
+.fsov-chk img{margin:0}
+.fsov-paper{background:#fff;color:#111;border-radius:8px;padding:20px;max-height:300px;overflow:auto;font-size:12px;line-height:1.5}
+.fsov-paper *{max-width:100%;color:inherit}
+
+@media (max-width:820px){
+	.fsov-split,.fsov-bento{grid-template-columns:1fr}
+	.fsov-bento .fsov-card{grid-column:auto!important;grid-row:auto!important;min-height:0!important}
+	.fsov-page .fsov-wrap{padding:28px 16px 56px}
+}
+@media (prefers-reduced-motion:reduce){.fsov-card,.fsov-dz,.fsov-bar i{transition:none}}
